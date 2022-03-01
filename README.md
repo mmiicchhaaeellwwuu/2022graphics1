@@ -1,6 +1,7 @@
 # 2022graphics1
 #week01
 ##第一個OpenGL程式
+```
 0. CodeBlocks 17.12 mingw 裝好
 1. File-New-Project，選OpenGL專案
 2. 在[...]的目錄，選「桌面」，week 01_OPENGL
@@ -46,9 +47,10 @@ git config --global user.name
 git commit -m "訊息"
 git push 推送上雲端
 (Chrome 要登入才行)
-
+```
 #week02
 ##step01-1 跑範例
+```
 1.下載範例 http://jsyeh.org/3dcg10     data.zip   windows.zip   glut32.dll
 2.window.zip  解壓  下載\windows\Shapes.exe
    data.zip  解壓  下載\windows\data\模型
@@ -119,5 +121,5 @@ int main(int argc,char** argv)
     glutDisplayFunc(display);
     glutMainLoop();
 }
-
+```
 ```
