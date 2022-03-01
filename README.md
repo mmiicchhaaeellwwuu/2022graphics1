@@ -70,8 +70,9 @@ git push 推送上雲端
 4.codeblocks file-open week01_GLUT
 
 
-
+```
 step02-1 寫程式
+```c++
 #include<GL/glut.h>
 void display()
 {
@@ -91,7 +92,7 @@ int main(int argc,char** argv)
 }
 
 
-
+```
 step03-1 寫程式
 ```c++
 #include<GL/glut.h>
@@ -121,5 +122,4 @@ int main(int argc,char** argv)
     glutDisplayFunc(display);
     glutMainLoop();
 }
-```
 ```
