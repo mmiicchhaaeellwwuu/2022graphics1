@@ -16,7 +16,7 @@
 
 
 
-第一個 GLUT 專案
+##第一個 GLUT 專案
 1.moodle下載 freeglut ... zip
 2.解壓縮 桌面 freeglut目錄
 3.桌面>freeglut>lib的libfreeglut.a將其複製並改成libglut32.a
@@ -34,7 +34,7 @@
 
 
  
-3.git
+##3.git
 開啟 Git Bash
 cd desktop 進入桌面
 git clone https://你的網址
@@ -71,7 +71,7 @@ git push 推送上雲端
 
 
 ```
-step02-1 寫程式
+##step02-1 寫程式
 ```c++
 #include<GL/glut.h>
 void display()
@@ -93,7 +93,7 @@ int main(int argc,char** argv)
 
 
 ```
-step03-1 寫程式
+##step03-1 寫程式
 ```c++
 #include<GL/glut.h>
 void display()
@@ -122,4 +122,131 @@ int main(int argc,char** argv)
     glutDisplayFunc(display);
     glutMainLoop();
 }
+```
+
+#week03
+##step01：
+
+1.下載範例 http://jsyeh.org/3dcg10     data.zip   windows.zip
+
+   windows.zip >下載\windows\Transformation.exe
+
+   data.zip >下載\windows\data\模型.obj
+
+2.執行Transformation.exe
+
+   (右上)右鍵：換模型
+
+   (下方)拖曳綠色數值
+3.上週程式
+```c++
+#include<GL/glut.h>
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glColor3f(1,1,0);
+    glutSolidTeapot(0.3);
+
+    glutSwapBuffers();
+}
+int main(int argc,char** argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week03 移動");
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
+
+##step02：
+
+1.移動程式
+```c++
+#include<GL/glut.h>
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();///備份矩陣
+        glTranslated(0.5,0.5,0);
+        glColor3f(1,1,0);
+        glutSolidTeapot(0.3);
+    glPopMatrix();///還原矩陣
+
+    glutSwapBuffers();
+}
+int main(int argc,char** argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week03 移動");
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
+
+2.四茶壺程式
+```c++
+#include<GL/glut.h>
+void myTeapot(float x,float y)
+{
+    glPushMatrix();///備份矩陣
+        glTranslated(0.5,0.5,0);
+        glColor3f(1,1,0);
+        glutSolidTeapot(0.3);
+    glPopMatrix();///還原矩陣
+}
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    myTeapot(0.5,0.5);
+    myTeapot(-0.5,0.5);
+    myTeapot(-0.5,-0.5);
+    myTeapot(0.5,-0.5);
+    glutSwapBuffers();
+}
+int main(int argc,char** argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week03 移動");
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
+
+3.滑鼠點擊程式
+```c++
+#include<GL/glut.h>
+float mouseX=0,mouseY=0;
+void myTeapot(float x,float y)
+{
+    glPushMatrix();///備份矩陣
+        glTranslated(x,y,0);
+        glColor3f(1,1,0);
+        glutSolidTeapot(0.3);
+    glPopMatrix();///還原矩陣
+}
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    myTeapot((mouseX-150)/150.0,-(mouseY-150)/150.0);
+    glutSwapBuffers();
+}
+void mouse(int button,int state,int x,int y)
+{
+    mouseX=x; mouseY=y;
+}
+int main(int argc,char** argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week03 移動");
+
+    glutDisplayFunc(display);
+    glutMouseFunc(mouse);///滑鼠事件
+
+    glutMainLoop();
+}
+
 ```
