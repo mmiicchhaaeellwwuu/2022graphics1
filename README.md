@@ -292,3 +292,102 @@ int main(int argc,char** argv)
 }
 
 ```
+
+# week04
+## step01主題：rotate旋轉
+```
+1.http://jsyeh.org/3dcg10下載
+  windows.zip >下載\windows\Transformation.exe
+  data.zip >下載\windows\data\一堆3D模型
+  
+(0,0,0)左上右下轉
+(1,0,0)前後轉
+(0,1,0)左右轉
+(1,0,0)2D左右轉
+(1,0,1)右上左下轉
+(1,1,0)左上右下轉
+(1,1,1)右下>頭頂>原點
+```
+## step02  旋轉茶壺程式
+```c++
+#include<GL/glut.h>
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();///備份矩陣
+        glRotatef(90, 0,0,1);
+        glutSolidTeapot(0.3);
+    glPopMatrix();///還原矩陣
+    glutSwapBuffers();
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week04 rotate");
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
+## 滑鼠拖曳旋轉茶壺程式
+```c++
+#include<GL/glut.h>
+float angle=0;
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();///備份矩陣
+        glRotatef(angle, 0,0,1);
+        glutSolidTeapot(0.3);
+    glPopMatrix();///還原矩陣
+    glutSwapBuffers();
+}
+void motion(int x,int y)
+{
+    angle=x;
+    display();///重畫畫面
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week04 rotate");
+    glutDisplayFunc(display);
+    glutMotionFunc(motion);
+    glutMainLoop();
+}
+```
+## step03 滑鼠點擊拖曳旋轉茶壺程式
+```c++
+#include<GL/glut.h>
+float angle=0,oldx=0;
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();///備份矩陣
+        glRotatef(angle, 0,0,1);
+        glutSolidTeapot(0.3);
+    glPopMatrix();///還原矩陣
+    glutSwapBuffers();
+}
+void motion(int x,int y)
+{
+    angle+=(x-oldx);
+    oldx=x;
+    display();///重畫畫面
+}
+void mouse(int bitton,int state,int x,int y)
+{
+    oldx=x;///定錨
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week04 rotate");
+    glutDisplayFunc(display);
+    glutMotionFunc(motion);
+    glutMouseFunc(mouse);
+    glutMainLoop();
+}
+```
