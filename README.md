@@ -592,3 +592,290 @@ int main(int argc,char**argv)
     glutMainLoop();
 }
 ```
+
+# week06打光
+## step01
+```
+1.http://jsyeh.org/3dcg10下載
+
+  windows.zip >下載\windows\Light Material.exe
+
+  data.zip >下載\windows\data\模型
+
+左上:左鍵drag可旋轉
+
+        右鍵，換模型
+
+左下:右鍵，換Material(打光)
+```
+## step02
+## 打光程式
+```c++
+#include<GL/glut.h>
+const GLfloat light_ambient[]={0.0f,0.0f,0.0f,1.0f};
+const GLfloat light_diffuse[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_position[]={2.0f,5.0f,-5.0f,0.0f};
+
+const GLfloat mat_ambient[]={0.7f,0.7f,0.7f,1.0f};
+const GLfloat mat_diffuse[]={0.8f,0.8f,0.8f,1.0f};
+const GLfloat mat_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat high_shininess[]={100.0f};
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        glColor3f(1,1,0);
+        glutSolidTeapot(0.3);
+    glutSwapBuffers();
+}
+int main(int argc,char** argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week06 light");
+    glutDisplayFunc(display);
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+
+    glLightfv(GL_LIGHT0,GL_AMBIENT,light_ambient);
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,light_diffuse);
+    glLightfv(GL_LIGHT0,GL_SPECULAR,light_specular);
+    glLightfv(GL_LIGHT0,GL_POSITION,light_position);
+
+    glMaterialfv(GL_FRONT,GL_AMBIENT,light_ambient);
+    glMaterialfv(GL_FRONT,GL_DIFFUSE,light_diffuse);
+    glMaterialfv(GL_FRONT,GL_SPECULAR,light_specular);
+    glMaterialfv(GL_FRONT,GL_POSITION,light_position);
+
+    glutMainLoop();
+}
+```
+## 上週程式打光
+```c++
+#include<GL/glut.h>
+#include<stdio.h>
+const GLfloat light_ambient[]={0.0f,0.0f,0.0f,1.0f};
+const GLfloat light_diffuse[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_position[]={2.0f,5.0f,-5.0f,0.0f};
+
+const GLfloat mat_ambient[]={0.7f,0.7f,0.7f,1.0f};
+const GLfloat mat_diffuse[]={0.8f,0.8f,0.8f,1.0f};
+const GLfloat mat_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat high_shininess[]={100.0f};
+float x=150,y=150,z=0,scale=1.0;
+int oldX=0,oldY=0;
+void display()
+{
+    glClearColor(0.5,0.5,0.5,1);///RGBA,A是半透明功能,目前未開放
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+        glTranslatef((x-150)/150.0,-(y-150)/150.0,z);
+        glScalef(scale,scale,scale);///縮放scale倍
+        glColor3f(1,0,1);
+        glutSolidTeapot(0.3);
+    glPopMatrix();
+    glutSwapBuffers();
+}
+void keyboard(unsigned char key,int mouseX,int mouseY)
+{
+
+}
+void mouse(int button,int state,int mouseX,int mouseY)
+{
+    oldX=mouseX; oldY=mouseY;
+}
+void motion(int mouseX,int mouseY)
+{
+    if(mouseX-oldX>0) scale*=1.01;
+    if(mouseX-oldX<0) scale*=0.99;
+    oldX=mouseX;   oldY=mouseY;
+    display();
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week06 light material");
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+
+    glLightfv(GL_LIGHT0,GL_AMBIENT,light_ambient);
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,light_diffuse);
+    glLightfv(GL_LIGHT0,GL_SPECULAR,light_specular);
+    glLightfv(GL_LIGHT0,GL_POSITION,light_position);
+
+    glMaterialfv(GL_FRONT,GL_AMBIENT,light_ambient);
+    glMaterialfv(GL_FRONT,GL_DIFFUSE,light_diffuse);
+    glMaterialfv(GL_FRONT,GL_SPECULAR,light_specular);
+    glMaterialfv(GL_FRONT,GL_POSITION,light_position);
+
+    glutMainLoop();
+}
+```
+## step03
+## 打光旋轉
+```c++
+#include<GL/glut.h>
+#include<stdio.h>
+const GLfloat light_ambient[]={0.0f,0.0f,0.0f,1.0f};
+const GLfloat light_diffuse[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_position[]={2.0f,5.0f,-5.0f,0.0f};
+
+const GLfloat mat_ambient[]={0.7f,0.7f,0.7f,1.0f};
+const GLfloat mat_diffuse[]={0.8f,0.8f,0.8f,1.0f};
+const GLfloat mat_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat high_shininess[]={100.0f};
+float x=150,y=150,z=0,scale=1.0,angle=0.0;
+int oldX=0,oldY=0;
+void display()
+{
+    glClearColor(0.5,0.5,0.5,1);///RGBA,A是半透明功能,目前未開放
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+        glTranslatef((x-150)/150.0,-(y-150)/150.0,z);
+        glRotated(angle,0,1,0);///對y軸轉動
+        glScalef(scale,scale,scale);///縮放scale倍
+        glColor3f(1,0,1);
+        glutSolidTeapot(0.3);
+    glPopMatrix();
+    glutSwapBuffers();
+}
+void keyboard(unsigned char key,int mouseX,int mouseY)
+{
+
+}
+void mouse(int button,int state,int mouseX,int mouseY)
+{
+    oldX=mouseX; oldY=mouseY;
+}
+void motion(int mouseX,int mouseY)
+{
+    angle+=(mouseX-oldX);
+    oldX=mouseX;   oldY=mouseY;
+    display();
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week06 light material");
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+
+    glLightfv(GL_LIGHT0,GL_AMBIENT,light_ambient);
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,light_diffuse);
+    glLightfv(GL_LIGHT0,GL_SPECULAR,light_specular);
+    glLightfv(GL_LIGHT0,GL_POSITION,light_position);
+
+    glMaterialfv(GL_FRONT,GL_AMBIENT,light_ambient);
+    glMaterialfv(GL_FRONT,GL_DIFFUSE,light_diffuse);
+    glMaterialfv(GL_FRONT,GL_SPECULAR,light_specular);
+    glMaterialfv(GL_FRONT,GL_POSITION,light_position);
+
+    glutMainLoop();
+}
+```
+## 打光 鍵盤 滑鼠 移動
+```c++
+#include<GL/glut.h>
+#include<stdio.h>
+const GLfloat light_ambient[]={0.0f,0.0f,0.0f,1.0f};
+const GLfloat light_diffuse[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat light_position[]={2.0f,5.0f,-5.0f,0.0f};
+
+const GLfloat mat_ambient[]={0.7f,0.7f,0.7f,1.0f};
+const GLfloat mat_diffuse[]={0.8f,0.8f,0.8f,1.0f};
+const GLfloat mat_specular[]={1.0f,1.0f,1.0f,1.0f};
+const GLfloat high_shininess[]={100.0f};
+
+float x=150,y=150,z=0,scale=1.0,angle=0.0;
+int oldX=0,oldY=0,now=1;///now:1移動 2轉動 3縮放
+void display()
+{
+    glClearColor(0.5,0.5,0.5,1);///RGBA,A是半透明功能,目前未開放
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+        glTranslatef((x-150)/150.0,-(y-150)/150.0,z);
+        glRotated(angle,0,1,0);///對y軸轉動
+        glScalef(scale,scale,scale);///縮放scale倍
+        glColor3f(1,1,0);
+        glutSolidTeapot(0.3);
+    glPopMatrix();
+    glutSwapBuffers();
+}
+void keyboard(unsigned char key,int mouseX,int mouseY)
+{
+    if(key=='1'||key=='w'||key=='W') now=1;
+    if(key=='2'||key=='e'||key=='E') now=2;
+    if(key=='3'||key=='r'||key=='R') now=3;
+}
+void mouse(int button,int state,int mouseX,int mouseY)
+{
+    oldX=mouseX; oldY=mouseY;
+}
+void motion(int mouseX,int mouseY)
+{
+    angle+=(mouseX-oldX);
+    oldX=mouseX;   oldY=mouseY;
+    display();
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutCreateWindow("week06 light material");
+
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+
+    glLightfv(GL_LIGHT0,GL_AMBIENT,light_ambient);
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,light_diffuse);
+    glLightfv(GL_LIGHT0,GL_SPECULAR,light_specular);
+    glLightfv(GL_LIGHT0,GL_POSITION,light_position);
+
+    glMaterialfv(GL_FRONT,GL_AMBIENT,light_ambient);
+    glMaterialfv(GL_FRONT,GL_DIFFUSE,light_diffuse);
+    glMaterialfv(GL_FRONT,GL_SPECULAR,light_specular);
+    glMaterialfv(GL_FRONT,GL_POSITION,light_position);
+
+    glutMainLoop();
+}
+```
