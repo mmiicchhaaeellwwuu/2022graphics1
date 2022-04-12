@@ -880,3 +880,26 @@ int main(int argc,char**argv)
 }
 ```
 
+# week08
+## step01
+```
+1.http://jsyeh.org/3dcg10下載
+  windows.zip >下載\windows\Light Material.exe
+  data.zip >下載\windows\data\模型
+  source.zip 
+執行Light Material.exe(打光/模型)
+複習上次上課的範例
+2.freeglut安裝  偷程式放notepad++
+3.了解glut範例sample.cpp
+```c++
+glPushMatrix();//備份矩陣
+    glTranslatef(x,y,z);//移動
+    glRotatef(角度,x,y,z);//轉動
+    glScalef(x,y,z);//縮放
+glPopMatrix();//還原矩陣
+```
+4.從github拿上次的程式 week06_light
+git 下載上次的程式
+git clone下來
+把week06_light\main.cpp用notepad++開起來，copy paste到week08的main.cpp
+```
