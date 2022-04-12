@@ -882,7 +882,6 @@ int main(int argc,char**argv)
 
 # week08
 ## step01
-```
 1.http://jsyeh.org/3dcg10下載
   windows.zip >下載\windows\Light Material.exe
   data.zip >下載\windows\data\模型
@@ -902,9 +901,7 @@ glPopMatrix();//還原矩陣
 git 下載上次的程式
 git clone下來
 把week06_light\main.cpp用notepad++開起來，copy paste到week08的main.cpp
-```
 ## step02
-```
 1.
 
 ```c++
@@ -953,7 +950,6 @@ glmDraw(pmodel,GLM_SMOOTH);
 
 }
 
-```
 
 2.畫模型
 
