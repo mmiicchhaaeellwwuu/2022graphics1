@@ -903,3 +903,73 @@ git 下載上次的程式
 git clone下來
 把week06_light\main.cpp用notepad++開起來，copy paste到week08的main.cpp
 ```
+## step02
+```
+1.
+
+```c++
+
+#include<GL/glut.h>
+
+#include"glm.h"//雙引號，同目錄裡的檔案
+
+```
+
+
+
+```c++
+
+GLMmodel* pmodel=NULL;
+
+```
+
+
+
+```c++
+
+void
+
+drawmodel(void)
+
+{
+
+    if(!pmodel)
+
+    {
+
+        pmodel=glmReadOBJ("datd/soccerball.obj");
+
+        if(!pmodel) exit(0);
+
+        glmUnitize(pmodel);
+
+        glmFaceNormals(pmodel);
+
+        glmVertexNormals(pmodel,90,0);
+
+    }
+
+glmDraw(pmodel,GLM_SMOOTH);
+
+}
+
+```
+
+2.畫模型
+
+(1)用drawmodel()
+
+(2)檔案在walking dir工作目錄
+
+(3)在codeblocks下方藍色build log 說工作目錄在......
+
+(4)C:\User\...\Desktop\freeglut\bin\
+
+(5)剛剛下載的 下載\data.zip裡面的data資料夾，整包放在"工作目錄"
+
+(6)把glm.h還有glm.c(檔名改成glm.cpp)放到week08裡
+
+(7)注:附檔名要看到才行
+
+(8)在week08 model專案哩，add同目錄裡的glm.cpp
+```
