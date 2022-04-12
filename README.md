@@ -968,4 +968,4 @@ glmDraw(pmodel,GLM_SMOOTH);
 (7)注:附檔名要看到才行
 
 (8)在week08 model專案哩，add同目錄裡的glm.cpp
-```
+
