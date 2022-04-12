@@ -949,7 +949,7 @@ drawmodel(void)
 glmDraw(pmodel,GLM_SMOOTH);
 
 }
-
+```
 
 2.畫模型
 
