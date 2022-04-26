@@ -969,3 +969,61 @@ glmDraw(pmodel,GLM_SMOOTH);
 
 (8)在week08 model專案哩，add同目錄裡的glm.cpp
 
+# week09
+## step01
+```
+1.http://jsyeh.org/3dcg10下載
+
+  windows.zip >下載\windows\Texture.exe
+
+  data.zip >下載\windows\data\圖檔
+
+  source.zip 
+
+Texture.exe 貼圖
+
+2.下載OpenCV 2.1.0 vs2008 版
+```
+
+## step02
+```
+codeblocks要重開
+
+1.File-New-EmptyFile,存成week09_opencv.cpp
+
+2.Setting-Compiler設定Include目錄
+
+3.Setting-Compiler設定Lib目錄
+
+4.Setting-Compiler  Linker加cv210  cxcore210  highgui210
+
+
+
+search directories 目錄在哪
+
+compiler 的 Include目錄:c:\opencv2.1\include
+
+Linker的Lib目錄 c:\opencv2.1\lib
+```
+```c++
+
+#include<opencv/highgui.h>//使用opencv外掛
+
+int main()
+
+{
+
+        IplImage * img=cvLoadImage("檔名.png");//讀圖
+
+        cvShowImage("week09",img);//秀圖
+
+        cvWaitKey(0);//等待任意鍵;
+
+}
+
+```
+
+## step03
+File-New-Project,GLUT專案 week09_texture
+
+10行glut範例+opencv讀圖秀圖
