@@ -1548,7 +1548,7 @@ glRotatef(角度,0,1,0); //轉動
 2.
 ```cpp
 glpushMatrix();
-    glRotate(angle,0,0,1);
+    glRotatef(angle,0,0,1);
     myDrawObject(1);//畫手臂
 glPopMatrix();
 ```
