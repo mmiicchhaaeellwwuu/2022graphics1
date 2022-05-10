@@ -1552,3 +1552,61 @@ glpushMatrix();
     myDrawObject(1);//畫手臂
 glPopMatrix();
 ```
+
+## step02
+```cpp
+glpushMatrix();
+    myDrawObject(0);//畫身體
+    glRotatef(angle,0,0,1);
+    glTranslatef(-0.3,-0.19,0);//往左下移
+    myDrawObject(1);//畫手臂
+glPopMatrix();
+```
+
+```cpp
+glpushMatrix();
+    myDrawObject(0);//畫身體
+    glTranslatef(0.29,0.31,0);//往右上移
+    glRotatef(angle,0,0,1);
+    glTranslatef(-0.3,-0.19,0);//往左下移
+    myDrawObject(1);//畫手臂
+glPopMatrix();
+```
+
+2.
+```cpp
+glpushMatrix();
+    glTranslatef(0.29,0.31,0);//往右上移
+    glRotatef(-45,0,0,1);
+    glTranslatef(-0.8,0.9,0);
+    glTranslatef(-0.8,0.9,0);;
+    drawHand();
+glPopMatrix();
+```
+3.
+codeblocks week12_TRT
+gl 10行
+TRT 6行
+```c++
+#include <GL/glut.h>
+float angle=0;
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+        glRotatef(angle,0,0,1);
+        glutSolidTeapot(0.2);
+    glPopMatrix();
+    glutSwapBuffers();
+    angle++;
+}
+int main(int argc ,char** argv)
+{
+    glutInit( &argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
+    glutCreateWindow("week12 TRT");
+    glutIdleFunc(display);
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
