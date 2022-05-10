@@ -1533,3 +1533,22 @@ int main(int argc,char**argv)
     glutMainLoop();
 }
 ```
+
+# week12
+## step01
+1.http://jsyeh.org/3dcg10下載
+  windows.zip >下載\windows\Transformation.exe
+  data.zip >下載\windows\data\模型
+  source.zip
+T移動、R轉動，右鍵 swap交換T R
+```cpp
+glTransslatef(0..9,0.0,0.0); //移右邊
+glRotatef(角度,0,1,0); //轉動
+```
+2.
+```cpp
+glpushMatrix();
+    glRotate(angle,0,0,1);
+    myDrawObject(1);//畫手臂
+glPopMatrix();
+```
