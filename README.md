@@ -1976,7 +1976,7 @@ int main(int argc,char**argv)
 ```
 
 ## step03
-week13_rect_many TRT
+1.week13_rect_many TRT
 加左半部的手
 ```c++
 #include <GL/glut.h>
