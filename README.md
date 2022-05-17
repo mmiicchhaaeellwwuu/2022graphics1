@@ -1700,7 +1700,7 @@ int main(int argc ,char** argv)
 
 # week13
 ## step01
-week13_rect_TRT
+1.week13_rect_TRT
 四角形
 ```c++
 #include <GL/glut.h>
