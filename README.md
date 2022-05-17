@@ -1697,3 +1697,26 @@ int main(int argc ,char** argv)
     glutMainLoop();
 }
 ```
+
+# week13
+## step01
+week13_rect_TRT
+四角形
+```c++
+#include <GL/glut.h>
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glRectf(0.3,0.5,-0.3,-0.5);
+    glutSwapBuffers();
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutInitWindowSize(600,600);
+    glutCreateWindow("week13 rect TRT");
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
