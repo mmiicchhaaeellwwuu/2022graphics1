@@ -1746,3 +1746,30 @@ int main(int argc,char**argv)
     glutMainLoop();
 }
 ```
+
+3.把旋轉中心放在正中心
+glTranslatef(-0.3,-0.4,0);///把手臂旋轉中心放在正中心
+```c++
+#include <GL/glut.h>
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glColor3f(1,1,1);
+    glRectf(0.3,0.5,-0.3,-0.5);///四邊形
+    glPushMatrix();
+    glTranslatef(-0.3,-0.4,0);///把手臂旋轉中心放在正中心
+        glColor3f(1,0,0);
+        glRectf(0.3,0.5,0.7,0.3);
+    glPopMatrix();
+    glutSwapBuffers();
+}
+int main(int argc,char**argv)
+{
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
+    glutInitWindowSize(600,600);
+    glutCreateWindow("week13 rect TRT");
+    glutDisplayFunc(display);
+    glutMainLoop();
+}
+```
