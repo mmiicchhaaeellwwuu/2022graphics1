@@ -2129,7 +2129,7 @@ int main(int argc,char**argv)
 # week14
 ## step01
 file-new-empty week14-1.cpp
-寫檔
+1.寫檔
 ```c
 #include <stdio.h>
 int main()
