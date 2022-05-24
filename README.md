@@ -2125,3 +2125,19 @@ int main(int argc,char**argv)
     glutMainLoop();
 }
 ```
+
+# week14
+## step01
+file-new-empty week14-1.cpp
+寫檔
+```c
+#include <stdio.h>
+int main()
+{
+    FILE*fout=fopen("file.txt","w+");///指標fout開啟檔案
+    printf("Hello World\n");
+    fprintf(fout,"Hello World\n");
+    fclose(fout);///關閉檔案
+}
+```
+
