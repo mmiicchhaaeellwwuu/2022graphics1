@@ -2129,7 +2129,7 @@ int main(int argc,char**argv)
 # week14
 ## step01
 file-new-empty week14-1.cpp
-1.寫檔
+1.寫檔(write)
 ```c
 #include <stdio.h>
 int main()
@@ -2141,3 +2141,20 @@ int main()
 }
 ```
 
+file-new-empty week14-2.cpp
+2.讀檔(read)
+```c
+#include <stdio.h>
+int main()
+{
+    FILE*fout=fopen("file.txt","w+");///指標fout開啟檔案
+    fprintf(fout,"3.1415926\n");
+    fclose(fout);///關閉檔案
+
+    float angle=0;
+    FILE*fin=fopen("file.txt","r");
+    fscanf(fin,"%f",&angle);
+    printf("讀到了角度:%f",angle);
+    fclose(fin);
+}
+```
