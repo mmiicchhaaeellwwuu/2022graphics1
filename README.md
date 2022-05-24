@@ -2252,7 +2252,7 @@ int main(int argc,char**argv)
 
 ## step02
 file-new-project week14_angle_fprintf_fscanf
-複製動作
+1.複製動作
 ```c++
 #include <GL/glut.h>
 #include <stdio.h>
