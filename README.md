@@ -2252,7 +2252,7 @@ int main(int argc,char**argv)
 
 ## step02
 file-new-project week14_angle_fprintf_fscanf
-1.複製動作
+1.複製動作(壓住r鍵)
 ```c++
 #include <GL/glut.h>
 #include <stdio.h>
@@ -2357,3 +2357,7 @@ int main(int argc,char**argv)
     glutMainLoop();
 }
 ```
+2.
+notepad++的.cbp檔之中的 working_dir="......."改成working_dir="."並存檔
+codeblocks reload
+freeglut.dll 從freeglut/bin複製至專案
