@@ -2444,3 +2444,20 @@ int main(int argc,char**argv)
     glutMainLoop();
 }
 ```
+
+# week15
+## step01
+ile-new-empty week15-1_PlaySound.cpp
+#include<mmysystem.h>
+#include<windows.h>
+setting-compiler setting linker 加入winmm
+```c
+#include <windows.h>
+#include <stdio.h>
+int main()
+{
+    printf("PlaySound()之前\n");
+    PlaySound("07042111.wav",NULL,SND_SYNC);
+    printf("PlaySound()之後\n");
+}
+```
