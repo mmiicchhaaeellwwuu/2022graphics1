@@ -2511,3 +2511,5 @@ int main()
     scanf("%d",&N);
 }
 ```
+拿上週的week14_angles_fprintf_fscanf
+file-new-project,glut專案 week15_angles_TRT_again
